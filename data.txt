@@ -1,0 +1,50 @@
+1, ASUS VivoBook 15, Ноутбук, 54999, 24
+2, Apple MacBook Air 13, Ноутбук, 99990, 12
+3, Acer Aspire 5, Ноутбук, 42999, 24
+4, Lenovo IdeaPad 3, Ноутбук, 37990, 12
+5, HP Pavilion 15, Ноутбук, 58900, 24
+6, Dell XPS 13, Ноутбук, 89990, 24
+7, Samsung Galaxy A54, Смартфон, 29999, 18
+8, Xiaomi Redmi Note 12, Смартфон, 19999, 12
+9, iPhone 14, Смартфон, 79990, 12
+10, Realme 10 Pro, Смартфон, 24999, 12
+11, Google Pixel 7, Смартфон, 59990, 24
+12, Sony Xperia 10 IV, Смартфон, 44990, 24
+13, Sony WH-1000XM4, Аудиотехника, 19990, 12
+14, JBL Flip 6, Аудиотехника, 8990, 12
+15, Apple AirPods Pro, Аудиотехника, 24990, 12
+16, Marshall Major IV, Аудиотехника, 12990, 12
+17, Sennheiser HD 450BT, Аудиотехника, 14990, 24
+18, Blue Yeti, Аудиотехника, 15990, 12
+19, Dell S2721HS, Монитор, 28999, 24
+20, AOC 24G2U, Монитор, 18990, 18
+21, Samsung Odyssey G5, Монитор, 32990, 24
+22, LG UltraGear 27GN800, Монитор, 41990, 24
+23, ASUS TUF Gaming VG249Q, Монитор, 23990, 24
+24, Apple iPad Air, Планшет, 59990, 12
+25, Samsung Galaxy Tab S9, Планшет, 79990, 24
+26, Huawei MatePad Pro, Планшет, 45990, 12
+27, Xiaomi Pad 6, Планшет, 34990, 12
+28, Lenovo Tab P11 Plus, Планшет, 27990, 12
+29, Logitech MX Master 3, Периферия, 8990, 6
+30, Keychron K8, Периферия, 12000, 6
+31, Razer DeathAdder V2, Периферия, 5990, 12
+32, ASUS ROG Strix Scope, Периферия, 10990, 12
+33, HyperX Cloud II, Периферия, 8990, 12
+34, LG OLED55C2, Телевизор, 89999, 36
+35, Samsung QE55Q70B, Телевизор, 69999, 24
+36, Sony XR-55X90K, Телевизор, 79990, 36
+37, TCL 55C735, Телевизор, 54990, 24
+38, Philips 50PUS8807, Телевизор, 65990, 24
+39, Canon EOS R50, Фототехника, 54990, 12
+40, Sony ZV-1, Фототехника, 69990, 12
+41, Nikon Z50, Фототехника, 64990, 24
+42, Fujifilm X-T30 II, Фототехника, 89990, 12
+43, TP-Link Archer AX73, Сетевое оборудование, 12999, 12
+44, ASUS RT-AX82U, Сетевое оборудование, 15990, 36
+45, Xiaomi AX6000, Сетевое оборудование, 8990, 12
+46, APC Back-UPS 1100, Сетевое оборудование, 19990, 12
+47, Seagate BarraCuda 2TB, Накопитель, 5990, 24
+48, WD Blue SN570 1TB, Накопитель, 7990, 60
+49, Samsung 870 EVO 500GB, Накопитель, 5990, 60
+50, Kingston A400 480GB, Накопитель, 3490, 36

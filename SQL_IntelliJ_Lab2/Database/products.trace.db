@@ -1,0 +1,20 @@
+2025-09-29 21:43:06.752189+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT COUNT(*) as total_products WHERE category = 'Фототехника'[*], SUM(cost * amount) as total_value FROM products"
+Syntax error in SQL statement "SELECT COUNT(*) as total_products WHERE category = 'Фототехника'[*], SUM(cost * amount) as total_value FROM products"; SQL statement:
+SELECT COUNT(*) as total_products WHERE category = 'Фототехника', SUM(cost * amount) as total_value FROM products [42000-240]
+2025-09-29 21:44:09.593877+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT COUNT(*) as total_products WHERE category = 'Фототехника'[*], SUM(cost * amount) as total_value FROM products"
+Syntax error in SQL statement "SELECT COUNT(*) as total_products WHERE category = 'Фототехника'[*], SUM(cost * amount) as total_value FROM products"; SQL statement:
+SELECT COUNT(*) as total_products WHERE category = 'Фототехника', SUM(cost * amount) as total_value FROM products [42000-240]
+2025-09-29 21:44:59.178938+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT COUNT(*) WHERE category = 'Фототехника' [*]as total_products, SUM(cost * amount) as total_value FROM products"
+Syntax error in SQL statement "SELECT COUNT(*) WHERE category = 'Фототехника' [*]as total_products, SUM(cost * amount) as total_value FROM products"; SQL statement:
+SELECT COUNT(*) WHERE category = 'Фототехника' as total_products, SUM(cost * amount) as total_value FROM products [42000-240]
+2025-09-29 21:46:32.256193+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT COUNT([*]WHERE category = 'Фотокамера') as total_products, SUM(cost * amount) as total_value FROM products"; ожидалось "*, DISTINCT, ALL, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "SELECT COUNT([*]WHERE category = 'Фотокамера') as total_products, SUM(cost * amount) as total_value FROM products"; expected "*, DISTINCT, ALL, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+SELECT COUNT(WHERE category = 'Фотокамера') as total_products, SUM(cost * amount) as total_value FROM products [42001-240]
+2025-09-29 21:50:24.245658+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT COUNT(*) as total_products FROM products WHERE category = 'Фототехника'[*], SUM(cost * amount) as total_value FROM products"
+Syntax error in SQL statement "SELECT COUNT(*) as total_products FROM products WHERE category = 'Фототехника'[*], SUM(cost * amount) as total_value FROM products"; SQL statement:
+SELECT COUNT(*) as total_products FROM products WHERE category = 'Фототехника', SUM(cost * amount) as total_value FROM products [42000-240]
