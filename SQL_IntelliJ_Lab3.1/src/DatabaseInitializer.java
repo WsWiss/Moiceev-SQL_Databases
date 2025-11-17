@@ -10,23 +10,23 @@ public class DatabaseInitializer {
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            createTables(conn);
+//            createTables(conn);
 
             // Initialize DAOs
             SupplierDAO supplierDAO = new SupplierDAO(conn);
             ProductDAO productDAO = new ProductDAO(conn);
 
-            // Create and insert suppliers from file
-            List<Supplier> suppliers = createSuppliers();
-            for (Supplier supplier : suppliers) {
-                supplierDAO.insert(supplier);
-            }
+//            // Create and insert suppliers from file
+//            List<Supplier> suppliers = createSuppliers();
+//            for (Supplier supplier : suppliers) {
+//                supplierDAO.insert(supplier);
+//            }
 
-            // Create and insert products from file
-            List<Product> products = createProducts();
-            for (Product product : products) {
-                productDAO.insert(product);
-            }
+//            // Create and insert products from file
+//            List<Product> products = createProducts();
+//            for (Product product : products) {
+//                productDAO.insert(product);
+//            }
 
             System.out.println("База данных успешно создана и заполнена!");
 
@@ -40,7 +40,7 @@ public class DatabaseInitializer {
 
             displaySupplierContacts(supplierDAO, productDAO);
 
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
@@ -70,9 +70,9 @@ public class DatabaseInitializer {
             )
             """;
 
-        try (Statement stmt = conn.createStatement()) {
-            stmt.execute(createSuppliersTable);
-            stmt.execute(createProductsTable);
+        try (Statement statement = conn.createStatement()) {
+            statement.execute(createSuppliersTable);
+            statement.execute(createProductsTable);
         }
     }
 
@@ -120,29 +120,15 @@ public class DatabaseInitializer {
     private static void displayProducts(ProductDAO productDAO) throws SQLException {
         List<Product> products = productDAO.getAllProducts();
 
-        System.out.println("\n┌────┬────────────────────────────────┬──────────────────────┬──────────────────────┬──────────┬────────┐");
-        System.out.println("│ ID │ Наименование                   │ Поставщик            │ Категория            │   Цена   │ Кол-во │");
-        System.out.println("├────┼────────────────────────────────┼──────────────────────┼──────────────────────┼──────────┼────────┤");
 
         for (Product product : products) {
             String name = product.getName();
             String supplier = product.getSupplier();
             String category = product.getCategory();
 
-            if (name.length() > 30) {
-                name = name.substring(0, 27) + "...";
-            }
-            if (supplier.length() > 20) {
-                supplier = supplier.substring(0, 17) + "...";
-            }
-            if (category.length() > 20) {
-                category = category.substring(0, 17) + "...";
-            }
-
             System.out.printf("│ %-2d │ %-30s │ %-20s │ %-20s │ %8.2f │ %6d │%n",
                     product.getId(), name, supplier, category, product.getCost(), product.getAmount());
         }
-        System.out.println("└────┴────────────────────────────────┴──────────────────────┴──────────────────────┴──────────┴────────┘");
 
         displayAllProductsStatistics(products);
     }
@@ -157,15 +143,11 @@ public class DatabaseInitializer {
         System.out.printf("\nВсего товаров: %d", totalProducts);
         System.out.printf("\nУникальных категорий: %d", uniqueCategories);
         System.out.printf("\nУникальных поставщиков: %d", uniqueSuppliers);
-        System.out.printf("\nОбщая стоимость inventory: %.2f руб.\n", totalValue);
+        System.out.printf("\nОбщая стоимость: %.2f руб.\n\n", totalValue);
     }
 
     private static void displaySuppliers(SupplierDAO supplierDAO) throws SQLException {
         List<Supplier> suppliers = supplierDAO.getAllSuppliers();
-
-        System.out.println("\n┌────┬──────────────────────┬──────────────────────┬──────────────────┬──────────────────────────┐");
-        System.out.println("│ ID │ Компания             │ Директор             │ Телефон          │ Email                    │");
-        System.out.println("├────┼──────────────────────┼──────────────────────┼──────────────────┼──────────────────────────┤");
 
         for (Supplier supplier : suppliers) {
             String companyName = supplier.getCompanyName();
@@ -173,24 +155,9 @@ public class DatabaseInitializer {
             String directorPhone = supplier.getDirectorPhone();
             String directorEmail = supplier.getDirectorEmail();
 
-            if (companyName.length() > 20) {
-                companyName = companyName.substring(0, 17) + "...";
-            }
-            if (directorName.length() > 20) {
-                directorName = directorName.substring(0, 17) + "...";
-            }
-            if (directorPhone.length() > 16) {
-                directorPhone = directorPhone.substring(0, 13) + "...";
-            }
-            if (directorEmail.length() > 24) {
-                directorEmail = directorEmail.substring(0, 21) + "...";
-            }
-
-            System.out.printf("│ %-2d │ %-20s │ %-20s │ %-16s │ %-24s │%n",
+            System.out.printf("│ %-2d │ %-20s │ %-20s │ %-16s │ %-30s │%n",
                     supplier.getId(), companyName, directorName, directorPhone, directorEmail);
         }
-        System.out.println("└────┴──────────────────────┴──────────────────────┴──────────────────┴──────────────────────────┘");
-
         displaySuppliersStatistics(suppliers);
     }
 
@@ -209,13 +176,9 @@ public class DatabaseInitializer {
         Map<String, Integer> productCountBySupplier = new HashMap<>();
         for (Product product : products) {
             String supplierName = product.getSupplier();
-            productCountBySupplier.put(supplierName,
-                    productCountBySupplier.getOrDefault(supplierName, 0) + 1);
+            productCountBySupplier.put(supplierName, productCountBySupplier.getOrDefault(supplierName, 0) + 1);
         }
 
-        System.out.println("\n┌──────────────────────┬──────────────────────┬──────────────────┬──────────┐");
-        System.out.println("│ Наименование         │ Директор             │ Телефон          │ Товаров  │");
-        System.out.println("├──────────────────────┼──────────────────────┼──────────────────┼──────────┤");
 
         for (Supplier supplier : suppliers) {
             String companyName = supplier.getCompanyName();
@@ -223,21 +186,10 @@ public class DatabaseInitializer {
             String directorPhone = supplier.getDirectorPhone();
             int productCount = productCountBySupplier.getOrDefault(companyName, 0);
 
-            // Обрезаем длинные строки для красивого отображения
-            if (companyName.length() > 20) {
-                companyName = companyName.substring(0, 17) + "...";
-            }
-            if (directorName.length() > 20) {
-                directorName = directorName.substring(0, 17) + "...";
-            }
-            if (directorPhone.length() > 16) {
-                directorPhone = directorPhone.substring(0, 13) + "...";
-            }
 
             System.out.printf("│ %-20s │ %-20s │ %-16s │ %8d │%n",
                     companyName, directorName, directorPhone, productCount);
         }
-        System.out.println("└──────────────────────┴──────────────────────┴──────────────────┴──────────┘");
 
 
     }

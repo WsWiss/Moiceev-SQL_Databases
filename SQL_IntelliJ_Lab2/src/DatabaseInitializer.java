@@ -52,19 +52,19 @@ public class DatabaseInitializer {
             String content = Files.readString(path);
             String[] lines = content.split("\n");
 
-            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 for (String line : lines) {
                     String[] parts = line.split(", ");
                     if (parts.length == 5) {
-                        pstmt.setInt(1, Integer.parseInt(parts[0].trim()));
-                        pstmt.setString(2, parts[1].trim());
-                        pstmt.setString(3, parts[2].trim());
-                        pstmt.setDouble(4, Double.parseDouble(parts[3].trim()));
-                        pstmt.setInt(5, Integer.parseInt(parts[4].trim()));
-                        pstmt.addBatch();
+                        preparedStatement.setInt(1, Integer.parseInt(parts[0].trim()));
+                        preparedStatement.setString(2, parts[1].trim());
+                        preparedStatement.setString(3, parts[2].trim());
+                        preparedStatement.setDouble(4, Double.parseDouble(parts[3].trim()));
+                        preparedStatement.setInt(5, Integer.parseInt(parts[4].trim()));
+                        preparedStatement.addBatch();
                     }
                 }
-                pstmt.executeBatch();
+                preparedStatement.executeBatch();
             }
         } catch (IOException e) {
             System.err.println("Ошибка чтения файла data.txt: " + e.getMessage());

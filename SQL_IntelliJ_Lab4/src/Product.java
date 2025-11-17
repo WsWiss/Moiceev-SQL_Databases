@@ -1,13 +1,29 @@
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+@DatabaseTable(tableName = "products")
 public class Product {
+    @DatabaseField(id = true)
     private int id;
+
+    @DatabaseField(canBeNull = false)
     private String name;
+
+    @DatabaseField
     private String supplier;
+
+    @DatabaseField
     private String category;
+
+    @DatabaseField
     private double cost;
+
+    @DatabaseField
     private int amount;
 
-    public Product() {}
+    public Product() {
+        // ORMLite требует пустой конструктор
+    }
 
     public Product(int id, String name, String supplier, String category, double cost, int amount) {
         this.id = id;
@@ -39,7 +55,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("Product{id=%d, name='%s', supplier='%s', category='%s', cost=%.2f, amount=%d}",
+        return String.format("id = %d, name = '%s', supplier = '%s', category = '%s', cost = %.2f, amount = %d",
                 id, name, supplier, category, cost, amount);
     }
 }

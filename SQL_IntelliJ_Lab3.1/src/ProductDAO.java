@@ -12,22 +12,22 @@ public class ProductDAO {
 
     public void insert(Product product) throws SQLException {
         String sql = "INSERT INTO products (id, name, supplier, category, cost, amount) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, product.getId());
-            pstmt.setString(2, product.getName());
-            pstmt.setString(3, product.getSupplier());
-            pstmt.setString(4, product.getCategory());
-            pstmt.setDouble(5, product.getCost());
-            pstmt.setInt(6, product.getAmount());
-            pstmt.executeUpdate();
-        }
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, product.getId());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setString(3, product.getSupplier());
+            preparedStatement.setString(4, product.getCategory());
+            preparedStatement.setDouble(5, product.getCost());
+            preparedStatement.setInt(6, product.getAmount());
+            preparedStatement.executeUpdate();
+
     }
 
     public Product getProduct(int id) throws SQLException {
         String sql = "SELECT * FROM products WHERE id = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 return new Product(
                         rs.getInt("id"),
@@ -45,17 +45,17 @@ public class ProductDAO {
     public List<Product> getProductsByCategory(String category) throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products WHERE category = ? ORDER BY id";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, category);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setString(1, category);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
                 products.add(new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("supplier"),
-                        rs.getString("category"),
-                        rs.getDouble("cost"),
-                        rs.getInt("amount")
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("supplier"),
+                        resultSet.getString("category"),
+                        resultSet.getDouble("cost"),
+                        resultSet.getInt("amount")
                 ));
             }
         }
@@ -65,16 +65,16 @@ public class ProductDAO {
     public List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products ORDER BY id";
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
+        try (Statement statement = conn.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
                 products.add(new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("supplier"),
-                        rs.getString("category"),
-                        rs.getDouble("cost"),
-                        rs.getInt("amount")
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("supplier"),
+                        resultSet.getString("category"),
+                        resultSet.getDouble("cost"),
+                        resultSet.getInt("amount")
                 ));
             }
         }

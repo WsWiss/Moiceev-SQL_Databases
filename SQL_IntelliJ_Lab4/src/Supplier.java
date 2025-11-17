@@ -1,11 +1,26 @@
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "suppliers")
 public class Supplier {
+    @DatabaseField(id = true)
     private int id;
+
+    @DatabaseField(columnName = "company_name", canBeNull = false)
     private String companyName;
+
+    @DatabaseField(columnName = "director_name")
     private String directorName;
+
+    @DatabaseField(columnName = "director_phone")
     private String directorPhone;
+
+    @DatabaseField(columnName = "director_email")
     private String directorEmail;
 
-    public Supplier() {}
+    public Supplier() {
+        // ORMLite требует пустой конструктор
+    }
 
     public Supplier(int id, String companyName, String directorName, String directorPhone, String directorEmail) {
         this.id = id;
